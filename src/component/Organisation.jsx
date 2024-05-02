@@ -1,35 +1,32 @@
-
-import React,{useEffect} from "react";
-import { useFormik, } from "formik";
+import React, { useEffect } from "react";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
-import Aos from "aos"
-import "aos/dist/aos.css"
+import Aos from "aos";
+import "aos/dist/aos.css";
 const SignupForm = () => {
-
-  useEffect(()=>{
-
-
-Aos.init({
-    duration: 2000, // Animation duration
+  useEffect(() => {
+    Aos.init({
+      duration: 2000, // Animation duration
       once: true, // Whether animation should only happen once
-      easing: 'ease-out', // Easing function for the animation
+      easing: "ease-out", // Easing function for the animation
       // You can add more customization options here
-
-});
-
-   },[]);
-
-
-
+    });
+  }, []);
 
   const validationSchema = Yup.object().shape({
     collegeName: Yup.string().required("College name is required"),
-    email: Yup.string().email("Invalid email address").required("Email is required"),
-    password: Yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
-    acceptTerms: Yup.boolean().oneOf([true], "You must accept the terms and conditions"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(8, "Password must be at least 8 characters")
+      .required("Password is required"),
+    acceptTerms: Yup.boolean().oneOf(
+      [true],
+      "You must accept the terms and conditions"
+    ),
   });
-
 
   const formik = useFormik({
     initialValues: {
@@ -44,14 +41,21 @@ Aos.init({
     },
   });
 
-
-
-
   return (
-    <div className="absolute top-[35%] right-[3%] w-3/12 px-4 h-4/6 rounded-lg "  data-aos="fade-up"  data-aos-duration="1000">
-      <form onSubmit={formik.handleSubmit} className="h-full">
+    <div
+      className="w-full md:w-3/4 mx-auto px-4 rounded-lg"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
+      <form
+        onSubmit={formik.handleSubmit}
+        className="h-full flex flex-col gap-4"
+      >
         <div className="bg-white p-4 rounded-2xl">
-          <label htmlFor="collegeName" className="font-open_spaced text-lg block">
+          <label
+            htmlFor="collegeName"
+            className="font-open_spaced text-lg block"
+          >
             College Name:
           </label>
           <input
@@ -61,7 +65,7 @@ Aos.init({
             placeholder="Enter your college name"
             value={formik.values.collegeName}
             onChange={formik.handleChange}
-             className="p-2.5 text-lg rounded-lg font-open_spaced w-full focus:outline-none"
+            className="py-2.5 text-lg rounded-lg font-open_spaced w-full focus:outline-none"
           />
           {formik.touched.collegeName && formik.errors.collegeName && (
             <div className="text-red-500">{formik.errors.collegeName}</div>
@@ -78,7 +82,7 @@ Aos.init({
             placeholder="Enter your Email"
             value={formik.values.email}
             onChange={formik.handleChange}
-             className="p-2.5 text-lg rounded-lg font-open_spaced w-full focus:outline-none"
+            className="py-2.5 text-lg rounded-lg font-open_spaced w-full focus:outline-none"
           />
           {formik.touched.email && formik.errors.email && (
             <div className="text-red-500">{formik.errors.email}</div>
@@ -95,7 +99,7 @@ Aos.init({
             placeholder="**********"
             value={formik.values.password}
             onChange={formik.handleChange}
-             className="p-2.5 text-lg rounded-lg font-open_spaced w-full focus:outline-none"
+            className="py-2.5 text-lg rounded-lg font-open_spaced w-full focus:outline-none"
           />
           {formik.touched.password && formik.errors.password && (
             <div className="text-red-500">{formik.errors.password}</div>
@@ -137,22 +141,23 @@ Aos.init({
         <div className="mt-4">
           <button
             type="submit"
-            className={`w-full h-12 rounded-full border border-gray-600 transition-all duration-300 mt-6 font-open_spaced ${
-              "bg-blue-800 text-white font-semibold text-2xl font-open_sans"
-            }`}
+            className={`w-full h-12 rounded-full border border-gray-600 transition-all duration-300 mt-6 font-open_spaced ${"bg-blue-800 text-white font-semibold text-2xl font-open_sans"}`}
             onClick={formik.handleSubmit}
           >
             Register
           </button>
         </div>
-         <div className="text-center mt-4">
-              <p className="font-open_spaced text-sm text-gray-800">
-                Already Have an account?{" "}
-                <Link to="/login" className="text-blue-800 font-semibold hover:underline">
-                  Sign In
-                </Link>
-              </p>
-            </div>
+        <div className="text-center mt-4">
+          <p className="pb-6 font-open_spaced text-sm text-gray-800">
+            Already Have an account?{" "}
+            <Link
+              to="/login"
+              className="text-blue-800 font-semibold hover:underline"
+            >
+              Sign In
+            </Link>
+          </p>
+        </div>
       </form>
     </div>
   );
