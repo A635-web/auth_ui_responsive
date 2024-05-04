@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import Aos from "aos";
 import "aos/dist/aos.css";
+
 const SignupForm = () => {
   useEffect(() => {
     Aos.init({
@@ -43,19 +44,16 @@ const SignupForm = () => {
 
   return (
     <div
-      className="w-full md:w-3/4 mx-auto px-4 rounded-lg"
+      className="w-full lg:w-4/5 mx-auto px-4 rounded-lg"
       data-aos="fade-up"
       data-aos-duration="1000"
     >
       <form
         onSubmit={formik.handleSubmit}
-        className="h-full flex flex-col gap-4"
+        className="h-full flex flex-col gap-4 lg:gap-0"
       >
         <div className="bg-white p-4 rounded-2xl">
-          <label
-            htmlFor="collegeName"
-            className="font-open_spaced text-lg block"
-          >
+          <label htmlFor="collegeName" className="font-bold text-lg block">
             College Name:
           </label>
           <input
@@ -65,14 +63,14 @@ const SignupForm = () => {
             placeholder="Enter your college name"
             value={formik.values.collegeName}
             onChange={formik.handleChange}
-            className="py-2.5 text-lg rounded-lg font-open_spaced w-full focus:outline-none"
+            className="p-2.5 mt-2 border border-gray-500 text-lg rounded-lg font-open_spaced w-full focus:outline-none"
           />
           {formik.touched.collegeName && formik.errors.collegeName && (
             <div className="text-red-500">{formik.errors.collegeName}</div>
           )}
         </div>
         <div className="mt-2 bg-white p-4 rounded-2xl">
-          <label htmlFor="email" className="font-open_spaced text-lg block">
+          <label htmlFor="email" className="font-bold text-lg block">
             Email:
           </label>
           <input
@@ -82,14 +80,14 @@ const SignupForm = () => {
             placeholder="Enter your Email"
             value={formik.values.email}
             onChange={formik.handleChange}
-            className="py-2.5 text-lg rounded-lg font-open_spaced w-full focus:outline-none"
+            className="p-2.5 mt-2 border border-gray-500 text-lg rounded-lg font-open_spaced w-full focus:outline-none"
           />
           {formik.touched.email && formik.errors.email && (
             <div className="text-red-500">{formik.errors.email}</div>
           )}
         </div>
         <div className="mt-2 bg-white p-4 rounded-2xl">
-          <label htmlFor="password" className="font-open_spaced text-lg block">
+          <label htmlFor="password" className="font-bold text-lg block">
             Password:
           </label>
           <input
@@ -99,14 +97,14 @@ const SignupForm = () => {
             placeholder="**********"
             value={formik.values.password}
             onChange={formik.handleChange}
-            className="py-2.5 text-lg rounded-lg font-open_spaced w-full focus:outline-none"
+            className="p-2.5 mt-2 border border-gray-500 text-lg rounded-lg font-open_spaced w-full focus:outline-none"
           />
           {formik.touched.password && formik.errors.password && (
             <div className="text-red-500">{formik.errors.password}</div>
           )}
         </div>
         <div className="mt-2 bg-white p-4 rounded-2xl">
-          <label className="font-open_spaced inline-flex items-center">
+          <label className="font-bold inline-flex items-center">
             <input
               type="checkbox"
               name="acceptTerms"
@@ -141,14 +139,14 @@ const SignupForm = () => {
         <div className="mt-4">
           <button
             type="submit"
-            className={`w-full h-12 rounded-full border border-gray-600 transition-all duration-300 mt-6 font-open_spaced ${"bg-blue-800 text-white font-semibold text-2xl font-open_sans"}`}
+            className={`w-full h-12 rounded-full border border-gray-600 transition-all duration-300 mt-1 font-open_spaced ${"bg-blue-800 text-white font-semibold text-2xl font-open_sans"}`}
             onClick={formik.handleSubmit}
           >
             Register
           </button>
         </div>
         <div className="text-center mt-4">
-          <p className="pb-6 font-open_spaced text-sm text-gray-800">
+          <p className="pb-6 font-open_spaced text-sm text-gray-800 font-semibold">
             Already Have an account?{" "}
             <Link
               to="/login"
